@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was an execice for unit conversion using bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+This project is integrated with CircleCI for CI/CD deployment. Checkin/commit will triggers the CI/CD process for build, deploy and Unit Test.
 
 ## Available Scripts
 
