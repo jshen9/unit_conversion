@@ -1,29 +1,10 @@
 import React from "react";
-import temperatureConverter from './service/converter';
+import {temperatureConverter, volumeConverter, valueEqual} from './service/converter';
+import {nameToSymbol, getValueByName} from './service/temperature';
 
 const Temperatures = Object.freeze(['Kelvin', 'Celsius', 'Fahrenheit', 'Rankine']);
 
-const Volumes = Object.freeze(['liters', 'tablespoons', 'cubic-inches', 'cups', 'cubic-feet', 'gallons']);
-
-function nameToSymbol(name) {
-  let v = '';
-  switch(name) {
-    case 'Kelvin': 
-      v = 'k';
-      break;
-    case 'Celsius':
-      v = 'c';
-      break;
-    case 'Fahrenheit':
-      v = 'f';
-      break;
-    case 'Rankine':
-      v = 'r';
-      break;
-  }
-
-  
-}
+const Volumes = Object.freeze(['liters', 'tablespoons', 'cubic-inches', 'cups', 'cubic-feet', 'gallons', 'l', 'tsp', 'in3', 'cup', 'ft3', 'gal']);
 
 class App extends React.Component {
   constructor() {
@@ -109,7 +90,27 @@ class App extends React.Component {
           rows[idx].output = 'incorrect';
           return;
       }
-      switch()
+      try {
+        const input_1 = parseFloat(rows[idx]['teacherInput']);
+        console.log('input_1: ', parseFloat(input_1).toFixed(1));
+        if (Temperatures.indexOf(rows[idx]['unitMeasure_1']) > -1) {
+          const result = temperatureConverter(input_1, nameToSymbol(rows[idx]['unitMeasure_1']));
+          console.log('=> convert result: ', result);
+          const targetValue = getValueByName(rows[idx]['unitMeasure_2'], result);
+          console.log('=> convert target: ', targetValue);
+          const v = valueEqual(targetValue, rows[idx]['studentInput']);
+          console.log('=> looked for: ', v);
+          rows[idx].output = v?'correct':'incorrect';
+        }
+        if (Volumes.indexOf(rows[idx]['unitMeasure_1']) > -1) {
+          const result = volumeConverter(input_1, rows[idx]['unitMeasure_1'], rows[idx]['unitMeasure_2']);
+          const v = valueEqual(result, rows[idx]['studentInput']);
+          console.log('=> looked for: ', v);
+          rows[idx].output = v?'correct':'incorrect';
+        }
+      } catch (e) {
+        window.alert(e);
+      }
     }
   }
 
@@ -178,15 +179,15 @@ class App extends React.Component {
                           onChange={this.handleSelection.bind(this)}
                           >
                           <option>Kelvin</option>
-                          <option>Celsius​</option>
+                          <option>Celsius</option>
                           <option>Fahrenheit</option>
                           <option>Rankine</option>
-                          <option>​liters​​</option>
-                          <option>​tablespoons​</option>
-                          <option>cubic-inches</option>
-                          <option>cups​</option>
-                          <option>cubic-feet</option>
-                          <option>gallons</option>
+                          <option value="l">​liters​​</option>
+                          <option value="tsp">​tablespoons​</option>
+                          <option value="in3">cubic-inches</option>
+                          <option value="cup">cups​</option>
+                          <option value="ft3">cubic-feet</option>
+                          <option value="gal">gallons</option>
                         </select>
                       </td>
                       <td>
@@ -195,15 +196,15 @@ class App extends React.Component {
                           onChange={this.handleSelection.bind(this)}
                         >
                           <option>Kelvin</option>
-                          <option>Celsius​</option>
+                          <option>Celsius</option>
                           <option>Fahrenheit</option>
                           <option>Rankine</option>
-                          <option>​liters​​</option>
-                          <option>​tablespoons​</option>
-                          <option>cubic-inches</option>
-                          <option>cups​</option>
-                          <option>cubic-feet</option>
-                          <option>gallons</option>
+                          <option value="l">​liters​​</option>
+                          <option value="tsp">​tablespoons​</option>
+                          <option value="in3">cubic-inches</option>
+                          <option value="cup">cups​</option>
+                          <option value="ft3">cubic-feet</option>
+                          <option value="gal">gallons</option>
                         </select>
                       </td>
                       <td>
