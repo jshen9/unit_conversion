@@ -2,6 +2,13 @@ This project was an execice for unit conversion using bootstrapped 4.
 
 This project is integrated with CircleCI for CI/CD deployment. Checkin/commit will triggers the CI/CD process for build, deploy and Unit Test.
 
+## Next Step Development Tasks
+
+- Highlight color for error and success result
+- Add warning message for invalid input
+- Add auto filter on the selection box for the matched options
+- Add hint and examples for input fields
+
 ## Available Scripts
 
 In the project directory, you can run:
