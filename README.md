@@ -1,6 +1,8 @@
-This project was an execice for unit conversion using bootstrapped 4.
+# Unit Conversion
 
-This project is integrated with CircleCI for CI/CD deployment. Checkin/commit will triggers the CI/CD process for build, deploy and Unit Test.
+This project was an execice for unit conversion using bootstrap 4.
+
+This project is integrated with CircleCI for CI/CD deployment. Checkin/commit will trigger the CI/CD process for build, deploy and Unit Test.
 
 ## Next Step Development Tasks
 
