@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.incorrect {
+  position: relative;
+  top: 4px;
+  color: red;
+  font-weight: 900;
+}
+
+.correct {
+  position: relative;
+  top: 4px;
+  color: green;
+  font-weight: 900;
+}
+
+.center {
+  width: 224px;
+  margin: 0 auto;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-4 {
+  margin-top: 2px !important;
+}

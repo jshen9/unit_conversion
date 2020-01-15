@@ -24,7 +24,7 @@ class App extends React.Component {
   handleChange = (e) => {
     // window.alert("handle row");
     const { name, value } = e.target;
-    if (isNaN(Number(value))) {
+    if (isNaN(Number(value)) && value !== '-') {
       window.alert('Invalid input, must be a float number');
       e.target.value = '';
       return;
@@ -140,13 +140,14 @@ class App extends React.Component {
     return (
       <div>
         <div className="container">
-          <div className="row clearfix">
+          <h2 className="center">Unit Converter</h2>
+          <div className="row clearfix mt-10">
             <div className="col-md-12 column">
             <button onClick={this.handleAddRow} className="btn btn-primary">
                 Add Row
               </button>
               <table
-                className="table table-bordered table-hover"
+                className="table table-bordered table-hover mt-4"
                 id="tab_logic"
               >
                 <thead>
@@ -216,7 +217,7 @@ class App extends React.Component {
                         />
                       </td>
                       <td>
-                        <div>{this.state.rows[idx].output}</div>
+                        <div className={(this.state.rows[idx].output === 'correct')?'correct':'incorrect'}>{this.state.rows[idx].output}</div>
                       </td>
                       <td>
                         <button
