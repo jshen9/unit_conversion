@@ -81,14 +81,14 @@ class App extends React.Component {
         (Volumes.indexOf(rows[idx]['unitMeasure_2']) > -1 && Temperatures.indexOf(rows[idx]['unitMeasure_1']) > -1) ) {
         rows[idx].output = 'invalid';
         console.log('temp invalid')
-        return;
+        return 'invalid';
       }
       console.log(rows[idx]['teacherInput']);
       console.log(rows[idx]['studentInput']);
       if ((rows[idx]['teacherInput'].trim().length && !rows[idx]['studentInput'].trim().length) ||
           (!rows[idx]['teacherInput'].trim().length && rows[idx]['studentInput'].trim().length)) {
           rows[idx].output = 'incorrect';
-          return;
+          return 'incorrect';
       }
       try {
         const input_1 = parseFloat(rows[idx]['teacherInput']);
@@ -147,11 +147,12 @@ class App extends React.Component {
                 Add Row
               </button>
               <table
-                className="table table-bordered table-hover mt-4"
+                className="table table-bordered table-hover"
+                style={{'position': 'relative', 'margin-top': '4px'}}
                 id="tab_logic"
               >
                 <thead>
-                  <tr>
+                  <tr className="table-title">
                     <th className="text-center"> # </th>
                     <th className="text-center"> Input Numerical Value </th>
                     <th className="text-center"> Input Unit Measure </th>

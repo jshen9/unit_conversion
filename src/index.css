@@ -38,3 +38,7 @@ code {
 .mt-4 {
   margin-top: 2px !important;
 }
+
+.table-title {
+  background-color: #0782bd;
+}
