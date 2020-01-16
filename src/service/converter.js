@@ -52,5 +52,5 @@ export const valueEqual = (t1, t2) => {
         return false;
     }
     console.log('=> t1: ' + parseFloat(t1).toFixed(1) + ', t2: ' + parseFloat(t2).toFixed(1));
-    return parseFloat(t1).toFixed(1) == parseFloat(t2).toFixed(1);
+    return {v: parseFloat(t1).toFixed(1) == parseFloat(t2).toFixed(1), answer: parseFloat(t1).toFixed(1)};
 }

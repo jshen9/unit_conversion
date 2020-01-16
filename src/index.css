@@ -42,3 +42,13 @@ code {
 .table-title {
   background-color: #0782bd;
 }
+
+.answer {
+  position: absolute;
+  font-size: 12px;
+  bottom: 2px;
+}
+
+table td {
+  position: relative;
+}

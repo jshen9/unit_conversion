@@ -15,7 +15,8 @@ class App extends React.Component {
         'unitMeasure_2': Temperatures[0],
         'teacherInput': '',
         'studentInput': '',
-        'output': ''
+        'output': '',
+        'answer': ''
       }]
     };
   }
@@ -98,15 +99,17 @@ class App extends React.Component {
           console.log('=> convert result: ', result);
           const targetValue = getValueByName(rows[idx]['unitMeasure_2'], result);
           console.log('=> convert target: ', targetValue);
-          const v = valueEqual(targetValue, rows[idx]['studentInput']);
+          const {v, answer} = valueEqual(targetValue, rows[idx]['studentInput']);
           console.log('=> looked for: ', v);
           rows[idx].output = v?'correct':'incorrect';
+          rows[idx].answer = answer;
         }
         if (Volumes.indexOf(rows[idx]['unitMeasure_1']) > -1) {
           const result = volumeConverter(input_1, rows[idx]['unitMeasure_1'], rows[idx]['unitMeasure_2']);
-          const v = valueEqual(result, rows[idx]['studentInput']);
+          const {v, answer} = valueEqual(result, rows[idx]['studentInput']);
           console.log('=> looked for: ', v);
           rows[idx].output = v?'correct':'incorrect';
+          rows[idx].answer = answer;
         }
       } catch (e) {
         window.alert(e);
@@ -120,7 +123,8 @@ class App extends React.Component {
       'unitMeasure_2': Temperatures[0],
       'teacherInput': '',
       'studentInput': '',
-      'output': ''
+      'output': '',
+      'answer': ''
     };
     this.setState({
       rows: [...this.state.rows, item]
@@ -148,7 +152,7 @@ class App extends React.Component {
               </button>
               <table
                 className="table table-bordered table-hover"
-                style={{'position': 'relative', 'margin-top': '4px'}}
+                style={{'position': 'relative', 'marginTop': '4px'}}
                 id="tab_logic"
               >
                 <thead>
@@ -219,6 +223,7 @@ class App extends React.Component {
                       </td>
                       <td>
                         <div className={(this.state.rows[idx].output === 'correct')?'correct':'incorrect'}>{this.state.rows[idx].output}</div>
+                        <div className="answer">{this.state.rows[idx].answer}</div>
                       </td>
                       <td>
                         <button
